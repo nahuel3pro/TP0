@@ -8,7 +8,7 @@ int iniciar_servidor(void)
 	//assert(!"no implementado!");
 
 	int socket_servidor;
-	int PUERTO;
+	//int PUERTO;
 	struct addrinfo hints, *servinfo, *p;
 
 	memset(&hints, 0, sizeof(hints));
@@ -25,7 +25,7 @@ int iniciar_servidor(void)
 
 	// Asociamos el socket a un puerto
 	setsockopt(fd_escucha, SOL_SOCKET, SO_REUSEPORT, &(int){1}, sizeof(int));
-	bind(fd_escucha, server_info->ai_addr, server_info->ai_addrlen);
+	bind(fd_escucha, servinfo->ai_addr, servinfo->ai_addrlen);
 	// Escuchamos las conexiones entrantes
 	listen(fd_escucha, SOMAXCONN);
 
@@ -38,12 +38,12 @@ int iniciar_servidor(void)
 int esperar_cliente(int socket_servidor)
 {
 	// Quitar esta línea cuando hayamos terminado de implementar la funcion
-	assert(!"no implementado!");
+	//assert(!"no implementado!");
 	// Aceptamos un nuevo cliente
 	int socket_cliente = accept(socket_servidor, NULL, NULL);
 
 	if(socket_cliente == -1){
-		log_error("Error al conectar un cliente!");
+		log_error(logger,"Error al conectar un cliente!");
 	}
 	log_info(logger, "Se conecto un cliente!");
 
