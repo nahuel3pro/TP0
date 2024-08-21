@@ -1,4 +1,5 @@
 #include "client.h"
+
 // #include "readline/readline.h"
 
 int main(void)
@@ -72,13 +73,28 @@ t_log *iniciar_logger(void)
 t_config *iniciar_config(void)
 {
 	t_config *nuevo_config;
+	char *current_dir = getcwd(NULL, 0);
+	char *file_name = "/cliente.config";
+	printf("Current dir: %s\n", current_dir);
+	printf("file's name: %s\n", file_name);
 
-	if ((nuevo_config = config_create("cliente.config")) == NULL)
+	size_t len1 = strlen(current_dir);
+	size_t len2 = strlen(file_name);
+	char *file_dirr = (char *)malloc(len1 + len2 + 1);
+
+	strcpy(file_dirr, current_dir);
+	strcat(file_dirr, file_name);
+
+	printf("Concatenated string: %s\n", file_dirr);
+
+	if ((nuevo_config = config_create(file_dirr)) == NULL)
 	{
 		printf("Fallo al inicializar la config");
 		exit(1);
 	}
 
+	free(file_dirr);
+	free(current_dir);
 	return nuevo_config;
 }
 

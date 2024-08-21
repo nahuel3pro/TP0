@@ -7,7 +7,8 @@
 #include<commons/string.h>
 #include<commons/config.h>
 #include<readline/readline.h>
-
+#include<string.h>
+#include<unistd.h>
 #include "utils.h"
 
 
