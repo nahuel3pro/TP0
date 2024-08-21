@@ -37,7 +37,7 @@ int main(void)
 
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
-	//leer_consola(logger);
+	// leer_consola(logger);
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
@@ -129,6 +129,17 @@ void terminar_programa(int conexion, t_log *logger, t_config *config)
 {
 	/* Y por ultimo, hay que liberar lo que utilizamos (conexion, log y config)
 	  con las funciones de las commons y del TP mencionadas en el enunciado */
-	log_destroy(logger);
-	config_destroy(config);
+
+	if (logger != NULL)
+	{
+		log_destroy(logger);
+	}
+	if (config != NULL)
+	{
+		config_destroy(config);
+	}
+	if (conexion)
+	{
+		liberar_conexion(conexion);
+	}
 }
